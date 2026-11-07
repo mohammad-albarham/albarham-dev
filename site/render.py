@@ -733,7 +733,7 @@ def render_home(d) -> str:
       <p class="hero-where"><i class="bi bi-geo-alt" aria-hidden="true"></i> {e(bio['location']['city'])}, {e(bio['location']['country'])}</p>
       <h1 class="display">Mohammad<br>Albarham</h1>
       <p class="hero-role">{e(bio['title'])}</p>
-      <p class="lead">I am working as an Associate Software Engineer with a focus on vision
+      <p class="lead">I am working as an Associate Software Engineer - Vision Systems with a focus on vision
          and perception systems at Aptiv. In my free time, I like to contribute to open-source
          projects and create cool, useful tools.</p>
       {social_list()}
@@ -1053,9 +1053,14 @@ def course_list(school: dict) -> str:
             label = f'<a href="{e(course["url"])}" target="_blank" rel="noopener noreferrer">{label}</a>'
         extras = []
         if course.get("projectUrl"):
-            extras.append(f'<a class="btn btn-sm" href="/{e(course["projectUrl"].lstrip("/"))}">View related project</a>')
+            page = course["projectUrl"].lstrip("/")
+            title = course.get("projectTitle") or next(
+                (p["title"] for p in load("projects") if p.get("detailsPage") == page), "View project")
+            extras.append(f'<span class="course-links-label">Related project</span>'
+                          f'<a href="/{e(page)}">{e(title)} <i class="bi bi-arrow-right" aria-hidden="true"></i></a>')
         for link in course.get("links") or []:
-            extras.append(f'<a class="btn btn-sm" href="{e(link["url"])}" target="_blank" rel="noopener noreferrer">{e(link["label"])}</a>')
+            extras.append(f'<a href="{e(link["url"])}" target="_blank" rel="noopener noreferrer">{e(link["label"])} '
+                          f'<i class="bi bi-box-arrow-up-right" aria-hidden="true"></i></a>')
         suffix = f'<p class="course-links">{"".join(extras)}</p>' if extras else ""
         code = f'<span class="meta">{e(course["code"])}</span> ' if course.get("code") else ""
         items.append(f"<li>{code}{label}{suffix}</li>")
@@ -1111,6 +1116,20 @@ def render_about(d) -> str:
     )
 
 
+def certification_groups(groups: list) -> str:
+    out = []
+    for group in groups:
+        items = []
+        for cert in sorted(group["items"], key=lambda c: c["date"], reverse=True):
+            label = e(cert["name"])
+            if cert.get("url"):
+                label = f'<a href="{e(cert["url"])}" target="_blank" rel="noopener noreferrer">{label}</a>'
+            items.append(f'<li>{label}<br><span class="meta">{e(cert["issuer"])} · {month(cert["date"])}</span></li>')
+        out.append(f'<div class="cert-group"><h3>{e(group["group"])}</h3>'
+                   f'<ul class="course-list">{"".join(items)}</ul></div>')
+    return "".join(out)
+
+
 def render_education(d) -> str:
     schools = []
     for school in d["education"]:
@@ -1161,6 +1180,15 @@ def render_education(d) -> str:
         Education</h1>
     </div>
     <ol class="cv-timeline cv-timeline-education">{''.join(schools)}</ol>
+  </div>
+</section>
+
+<section id="certifications" class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="section-title">Certifications &amp; courses</h2>
+    </div>
+    <div class="cert-groups">{certification_groups(d['certifications'])}</div>
   </div>
 </section>
 """
@@ -1285,6 +1313,23 @@ def render_volunteering(d) -> str:
     )
 
 
+def render_visited_countries_redirect() -> str:
+    return """<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Visited Countries — Mohammad Albarham</title>
+<link rel="canonical" href="https://mohammad-albarham.github.io/about/#travel">
+<meta http-equiv="refresh" content="0; url=/about/#travel">
+<script>location.replace("/about/#travel");</script>
+</head>
+<body>
+<p>Redirecting to <a href="/about/#travel">Travel</a>...</p>
+</body>
+</html>
+"""
+
+
 def render_contact(d) -> str:
     bio = d["bio"]
     body = f"""
@@ -1329,7 +1374,7 @@ GENERATED = ["index.html", "about/index.html", "experience/index.html", "educati
              "projects/index.html", "research/index.html", "competitions/index.html",
              "volunteering/index.html", "contact/index.html"]
 LEGACY_DIRS = ["projects", "competitions", "experience", "volunteering"]
-NOT_INDEXED = {"googleebff4c42c46c6acf.html"}
+NOT_INDEXED = {"googleebff4c42c46c6acf.html", "visited_countries.html"}
 
 
 def site_routes() -> list[str]:
@@ -1374,6 +1419,7 @@ def build(out: Path | None = None) -> list[str]:
         "projects": load("projects"),
         "experience": load("experience"),
         "education": load("education"),
+        "certifications": load("certifications"),
         "publications": load("publications"),
         "competitions": load("competitions"),
         "volunteering": load("volunteering"),
@@ -1391,6 +1437,7 @@ def build(out: Path | None = None) -> list[str]:
         "competitions/index.html": render_competitions(d),
         "contests/index.html": render_contests_redirect(),
         "volunteering/index.html": render_volunteering(d),
+        "volunteering/visited_countries.html": render_visited_countries_redirect(),
         "contact/index.html": render_contact(d),
         "sitemap.xml": render_sitemap(),
     }

@@ -101,7 +101,7 @@ def check_site_links(site_dir: Path, include_templates: bool = False, verbose: b
     # enabled at /<repo>/. Those live in their own repositories, so they never
     # resolve against this checkout — but a typo'd self-link still has to fail,
     # which is why this is a list and not a blanket skip.
-    sibling_pages = ("/fast-rich/",)
+    sibling_pages = ("/fast-rich/", "/falcon_mdf/")
 
     for p, parser in parsed_files.items():
         rel_source = str(p.relative_to(site_dir))

@@ -29,7 +29,8 @@ LEGACY_ROUTES = [
     "/experience/phi-pair.html",
     "/projects/araclip.html",
     "/volunteering/volunteering_ieee.html",
-] + [f"/projects/latest-projects-{n}.html" for n in range(1, 6)] \
+    "/volunteering/visited_countries.html",
+] + [f"/projects/latest-projects-{n}.html" for n in range(1, 8)] \
   + [f"/projects/portfolio-details-{n}.html"
      for n in [1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 19, 20, 21]] \
   + [f"/competitions/competition-details-{n}.html" for n in range(1, 6)]

@@ -34,7 +34,7 @@ SECTIONS = {
     "projects": ("Projects", "/projects/", "projects"),
     "competitions": ("Competitions", "/competitions/", "competitions"),
     "experience": ("Experience", "/experience/", "experience"),
-    "volunteering": ("About & CV", "/about/#service", "about"),
+    "volunteering": ("Volunteering", "/volunteering/", "volunteering"),
 }
 
 # Pages with no record in data/*.json. Titles read off the pages themselves.
@@ -205,7 +205,7 @@ def main() -> int:
     changed, skipped = [], []
     for directory in SECTIONS:
         for path in sorted((ROOT / directory).glob("*.html")):
-            if path.name == "index.html":
+            if path.name in {"index.html", "visited_countries.html"}:
                 continue
             built = build_page(path)
             if built is None:
