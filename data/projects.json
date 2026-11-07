@@ -51,6 +51,22 @@
     "detailsPage": "projects/latest-projects-6.html"
   },
   {
+    "id": "ssy226-bev-synthetic-data",
+    "title": "Synthetic Data Generation for Multi-view BEV Segmentation",
+    "category": "computer-vision",
+    "tags": ["Computer Vision", "Gaussian Splatting", "Synthetic Data", "BEV Segmentation"],
+    "featured": true,
+    "image": "assets/img/portfolio/ssy226_system_diagram.jpg",
+    "shortDescription": "Synthetic multi-view factory data from Unreal Engine 5 and Gaussian Splatting, used to train a multi-view bird's-eye-view segmentation model",
+    "description": "An automated pipeline that builds photorealistic factory scenes in Unreal Engine 5 from a Gaussian Splatting capture of a real factory, renders synchronized views from 10 cameras with pixel-level semantic masks and BEV ground truth, and trains a multi-view model (ResNet-50 backbone, spatial cross-attention, DETR-style head) to predict bird's-eye-view segmentation directly. Developed as part of SSY226 – Design project in systems, control and mechatronics at Chalmers University.",
+    "technologies": ["Unreal Engine 5", "Gaussian Splatting", "PyTorch", "ResNet-50", "Transformers"],
+    "links": {
+      "poster": "assets/docs/SSY226_Project_Poster.pdf"
+    },
+    "year": 2025,
+    "detailsPage": "projects/latest-projects-7.html"
+  },
+  {
     "id": "fast-rich",
     "title": "Fast-Rich: High-Performance Terminal UI",
     "category": "tools",
@@ -231,7 +247,7 @@
     "description": "A comprehensive RGB dataset for Arabic Alphabets Sign Language recognition, containing diverse samples for training and evaluation of sign language recognition models.",
     "technologies": ["Dataset Creation", "Computer Vision", "Arabic Sign Language"],
     "links": {
-      "kaggle": "https://www.kaggle.com/datasets/...",
+      "kaggle": "https://www.kaggle.com/datasets/59761a7132888de252ded8443ced1c7fb21ad28be5598f1f6ca43c663c32b40b",
       "huggingface": "https://huggingface.co/datasets/pain/AASL",
       "roboflow": "https://universe.roboflow.com/rgb-arsl/rgb-arabic-alphabet-sign-language-aasl-dataset",
       "paper": "https://arxiv.org/abs/2301.11932"

@@ -79,7 +79,7 @@ def main() -> int:
     stale = []
     for directory in LEGACY_DIRS:
         for path in sorted((ROOT / directory).glob("*.html")):
-            if path.name == "index.html":
+            if path.name in {"index.html", "visited_countries.html"}:
                 continue
             before = path.read_text(encoding="utf-8")
             after = rewrite(before, CURRENT_BY_DIR[directory])

@@ -97,7 +97,7 @@ def run(browser) -> None:
     # --- legacy routes all answer -----------------------------------------
     legacy = [f"/projects/portfolio-details-{n}.html" for n in
               [1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 19, 20, 21]]
-    legacy += [f"/projects/latest-projects-{n}.html" for n in range(1, 6)]
+    legacy += [f"/projects/latest-projects-{n}.html" for n in range(1, 7)]
     legacy += [f"/competitions/competition-details-{n}.html" for n in range(1, 6)]
     legacy += ["/projects/araclip.html", "/experience/phi-pair.html",
                "/volunteering/volunteering_ieee.html"]
@@ -130,13 +130,13 @@ def run(browser) -> None:
     # --- project filter -----------------------------------------------------
     page.goto(BASE + "/projects/", wait_until="networkidle")
     total = page.locator("#all-projects .work-card").count()
-    check(total == 25, f"projects page lists every project ({total} cards)")
+    check(total == 24, f"projects page lists every non-open-source project ({total} cards)")
     chip = page.locator('.filter-chip[data-tech-value="PyTorch"]')
     check(chip.count() == 1, "a PyTorch filter chip exists")
     chip.first.click()
     visible = page.locator("#all-projects .work-card:not(.is-hidden)").count()
     check(0 < visible < total, f"filtering narrows the grid ({visible} of {total})")
-    check("of 25 projects tagged PyTorch" in page.locator("#all-projects-status").inner_text(),
+    check("of 24 projects tagged PyTorch" in page.locator("#all-projects-status").inner_text(),
           "filter status is announced")
     page.locator('.filter-chip[data-tech-value="all"]').click()
     check(page.locator("#all-projects .work-card:not(.is-hidden)").count() == total,

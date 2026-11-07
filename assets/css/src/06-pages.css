@@ -166,12 +166,36 @@
 .cv-entry .course-list { max-width: none; }
 .course-list li { margin-bottom: 0.5rem; }
 .course-list .meta { display: inline; margin-right: 0.35rem; }
+
+.cert-groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+  gap: 1.5rem 2.5rem;
+}
+.cert-group h3 { margin-bottom: 0.6rem; }
+.cert-group .course-list { padding-left: 1.1rem; }
+.cert-group .course-list li { margin-bottom: 0.7rem; }
 .course-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin: 0.5rem 0 0.9rem;
+  align-items: baseline;
+  gap: 0.25rem 1rem;
+  margin: 0.2rem 0 0.75rem;
+  padding-left: 0.75rem;
+  border-left: 2px solid var(--border);
+  font-size: 0.875rem;
+  line-height: 1.45;
 }
+.course-links-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+.course-links a { font-weight: 600; }
+.course-links .bi { font-size: 0.8em; margin-left: 0.15rem; }
 
 /* Research ---------------------------------------------------------------- */
 
