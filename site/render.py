@@ -984,24 +984,13 @@ def render_research(d) -> str:
 def render_competitions(d) -> str:
     comps = sorted(d["competitions"], key=lambda c: c.get("date") or "", reverse=True)
     podiums = sum(1 for c in comps if (c.get("rank") or 99) <= 3)
-    distinctions = sum(len(prizes(c)) for c in comps)
-    comp_years = sorted((c["date"] or "")[:4] for c in comps if c.get("date"))
-    comp_years = f"{comp_years[0]}&ndash;{comp_years[-1]}" if comp_years else ""
 
     body = f"""
 <section id="competitions" class="section">
   <div class="wrap">
     <div class="section-head">
       <h1 class="page-title">Competitions</h1>
-      <p class="lead">Kaggle leaderboards, ICPC problem sets and firefighting robot
-         arenas &mdash; {len(comps)} competitive engineering challenges, with full write-ups and photos.</p>
     </div>
-    <dl class="stat-row">
-      <div><dt>Contests</dt><dd>{len(comps)}</dd></div>
-      <div><dt>Podium finishes</dt><dd>{podiums}</dd></div>
-      <div><dt>Distinctions</dt><dd>{distinctions}</dd></div>
-      <div><dt>Years</dt><dd>{comp_years}</dd></div>
-    </dl>
     <div class="card-grid">{''.join(award(c) for c in comps)}</div>
   </div>
 </section>
