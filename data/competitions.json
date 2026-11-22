@@ -213,6 +213,7 @@
     ],
     "gallery": [
       "assets/img/competitions/competition-6/certificate.jpg"
-    ]
+    ],
+    "detailsPage": "competitions/competition-details-6.html"
   }
 ]
