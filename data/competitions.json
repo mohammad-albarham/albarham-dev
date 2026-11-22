@@ -181,5 +181,38 @@
       "assets/img/competitions/competition-5/portal-2018-group-photo.jpg"
     ],
     "detailsPage": "competitions/competition-details-5.html"
+  },
+  {
+    "id": "competition-6",
+    "title": "Al-Rawi: Generative AI Story Maker — Best Innovation or Application Serving the Arabic Language",
+    "award": "2nd Place",
+    "rank": 2,
+    "date": "2024-07",
+    "organizer": "Department of Arabic Language and Literature, College of Arts, Humanities and Social Sciences, University of Sharjah",
+    "location": "Sharjah, UAE",
+    "image": "assets/img/competitions/competition-6/certificate.jpg",
+    "shortDescription": "Placed 2nd with Al-Rawi (الراوي), an app that generates short Arabic stories from text and images using generative AI.",
+    "description": "Al-Rawi (الراوي: صانع القصص بالذكاء الاصطناعي التوليدي) generates short Arabic stories from text and images. It uses large language models such as GPT-4 to write the story and Stable Diffusion to illustrate it. The interface is built with Gradio and hosted on Hugging Face Spaces. The project placed 2nd in the University of Sharjah's competition for the best innovation or application serving the Arabic language.",
+    "technologies": [
+      "Generative AI",
+      "LLMs",
+      "Stable Diffusion",
+      "Gradio",
+      "Arabic NLP"
+    ],
+    "links": {
+      "Code": "https://github.com/mohammad-albarham/Arabic_story_generator",
+      "Live demo": "https://huggingface.co/spaces/pain/Arabic_story_generator"
+    },
+    "highlights": [
+      "Won 2nd place in the competition for the best innovation or application serving the Arabic language, run by the Department of Arabic Language and Literature at the University of Sharjah.",
+      "Generates short Arabic stories from text and images with generative AI.",
+      "Uses large language models such as GPT-4 for the story text and Stable Diffusion for the illustrations.",
+      "Interface built with Gradio and hosted on Hugging Face Spaces; the code is open source on GitHub.",
+      "Presented the app and how to contribute to it at a workshop hosted by Coders HQ in Dubai."
+    ],
+    "gallery": [
+      "assets/img/competitions/competition-6/certificate.jpg"
+    ]
   }
 ]
